@@ -1,20 +1,24 @@
-
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import Tasklist from './pages/Tasklist'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./hooks/useAuth";
+import AppRoutes from "./routes/AppRoutes";
+import "./App.css";
 
 function App() {
- 
-
-  return (
-    <>      
-<Routes>
-  <Route path={'/'} element={<Tasklist/>}/>
-</Routes>
-      
-
-    </>
-  )
+    return (
+        <AuthProvider>
+            <AppRoutes />
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnHover
+                theme="colored"
+            />
+        </AuthProvider>
+    );
 }
 
-export default App
+export default App;

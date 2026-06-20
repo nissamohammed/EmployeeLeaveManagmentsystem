@@ -1,18 +1,26 @@
-import axios from "axios"
+import axios from "axios";
 
-
-export const commonApi = async(httpRequest ,url ,reqBody)=>{
-    let reqConfig = {
-          method:httpRequest,
-          url,
-          data:reqBody,
-          headers:{"Content-Type":'application/json'}
-          
-
+export const commonApi = async (httpRequest, url, reqBody, token = null) => {
+    const headers = { "Content-Type": "application/json" };
+    if (token) {
+        headers.Authorization = `Bearer ${token}`;
+    } else {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            headers.Authorization = `Bearer ${storedToken}`;
+        }
     }
-   return await axios(reqConfig).then((result)=>{
-        return result
-    }).catch((err)=>{
-        return err
-    })
-}
+
+    const reqConfig = {
+        method: httpRequest,
+        url,
+        data: reqBody,
+        headers
+    };
+
+    try {
+        return await axios(reqConfig);
+    } catch (err) {
+        return err.response || { status: 500, data: { error: "Network error" } };
+    }
+};

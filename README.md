@@ -1,4 +1,4 @@
-Running the Application Locally- TASK MANAGER APPLICATION
+Running the Application Locally-Employee Leave Management System
 
 Prerequisites
 Ensure the following tools are installed on your system:

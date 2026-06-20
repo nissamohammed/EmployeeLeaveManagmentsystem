@@ -1,25 +1,30 @@
+import { commonApi } from "./commomApi";
+import { serverUrl } from "./serverUrl";
 
-import { commonApi } from "./commomApi"
-import { serverUrl } from "./serverUrl"
+export const registerApi = async (reqBody) => {
+    return await commonApi("POST", `${serverUrl}/api/auth/register`, reqBody);
+};
 
-//add task : Create a new task
-export const addtodolistApi = async(reqbody)=>{
-   return await commonApi('POST', `${serverUrl}/api/tasks`,reqbody)
-}
+export const loginApi = async (reqBody) => {
+    return await commonApi("POST", `${serverUrl}/api/auth/login`, reqBody);
+};
 
-//api Get a list of all tasks.
-export const gettodolistApi = async()=>{
-   return await commonApi('GET',`${serverUrl}/api/tasks`,"")
-}
+export const applyLeaveApi = async (reqBody) => {
+    return await commonApi("POST", `${serverUrl}/api/leaves`, reqBody);
+};
 
-//Update a specific task by ID.
-export const editTaskApi = async(taskid,reqBody)=>{   
-   return await commonApi('PUT',`${serverUrl}/api/tasks/${taskid}`,reqBody)
-}
+export const getMyLeavesApi = async (params = "") => {
+    return await commonApi("GET", `${serverUrl}/api/leaves/my-leaves${params}`, "");
+};
 
-//Delete a specific task by ID.
-export const deleteTaskApi = async(id)=>{
-   return await commonApi('DELETE',`${serverUrl}/api/tasks/${id}`,{},"")
-}
+export const getAllLeavesApi = async (params = "") => {
+    return await commonApi("GET", `${serverUrl}/api/leaves${params}`, "");
+};
 
+export const updateLeaveStatusApi = async (leaveId, reqBody) => {
+    return await commonApi("PATCH", `${serverUrl}/api/leaves/${leaveId}/status`, reqBody);
+};
 
+export const getStatsApi = async () => {
+    return await commonApi("GET", `${serverUrl}/api/leaves/stats`, "");
+};

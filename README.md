@@ -48,8 +48,11 @@ Look at the terminal logs for error messages and resolve them accordingly.
    2. npm install
    3. npm i cors dotenv express mongoose
    4. check .env file with below given:
-.env file(back end) : 
-DATABASE= mongodb+srv://nissamohammed8:mern@cluster0.jquno.mongodb.net/taskmanagerapp?retryWrites=true&w=majority&appName=Cluster0
+.env file(back end) locally: 
+DATABASE=mongodb://localhost:27017/leave_management
+JWT_SECRET=leave_management_jwt_secret_2026
+JWT_EXPIRES_IN=7d
+PORT=4000
    5. run the server application:
   nodemon index.js
 
